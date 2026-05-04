@@ -4992,6 +4992,7 @@ version = "0.1.0"
 dependencies = [
  "anchor-client",
  "sol-anch-elections",
+ "solana-sdk",
 ]
 
 [[package]]
