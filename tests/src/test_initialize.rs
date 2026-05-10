@@ -20,8 +20,16 @@ fn test_initialize() {
 
     let payer = Rc::new(read_keypair_file(&anchor_wallet).unwrap());
 
+
+    use std::env;
+    let rpc_url = env::var("ANCHOR_PROVIDER_URL")
+        .unwrap_or_else(|_| "http://127.0.0.1:8899".to_string());
+    let ws_url = rpc_url
+        .replace("http://", "ws://")
+        .replace("8899", "8900");
+
     let client = Client::new_with_options(
-        Cluster::Localnet,
+        Cluster::Custom(rpc_url, ws_url),
         payer.clone(),
         CommitmentConfig::confirmed(),
     );

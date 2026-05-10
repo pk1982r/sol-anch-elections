@@ -16,4 +16,12 @@ cluster = "localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
-test = "cargo test"
+test = "sleep 3 && cargo test"
+
+[test]
+startup_wait = 500
+
+[test.validator]
+reset = true
+bind_address = "127.0.0.1"
+rpc_port = 8899
